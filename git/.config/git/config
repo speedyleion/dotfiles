@@ -5,32 +5,38 @@
     editor = nvim
     pager = less -FRX
 [alias]
-    wip = !git commit -am \"$(curl -s https://whatthecommit.com/index.txt)\" -e
+    ; Keep the NSA message out, it can be a bit concerning if it lands in some
+    ; repos
+    wip = !git commit -am \"$(curl -s https://whatthecommit.com/index.txt | grep -v NSA)\" -e
+
     st = status
     lg = log --oneline --graph
     lga = log --oneline --graph --all
+    lgm = log --oneline --graph HEAD origin/main
+    ; diff current branch back to where it split from main
     diffb = !git difftool $(git merge-base origin/main HEAD)
     cane = commit --amend --no-edit
     sup = submodule update --init --recursive
+    ; Remve review branchs
+    clnr = ! git --no-pager branch --list | rg -v '^\\*|^\\s*main|^\\s*nick|^\\s*release' | xargs git branch -D
+    ; Squash against the upstream (origin)
+    sqo = !git rebase -i origin/`git branch --show-current`
+    ; Diff against the upstream (origin)
+    diffo = !git difftool origin/`git branch --show-current`
+
     ; Git town stuff
     ls = town branch
-	append = town append
-	compress = town compress
-	contribute = town contribute
-	diff-parent = town diff-parent
-	down = town down
-	hack = town hack
-	delete = town delete
-	observe = town observe
-	park = town park
-	prepend = town prepend
-	propose = town propose
-	rename = town rename
-	repo = town repo
-	set-parent = town set-parent
-	ship = town ship
-	sync = town sync
-	up = town up
+    ; Diff to parent
+    diffp = !git difftool `git merge-base $(git town config get-parent) HEAD`
+    ; Squash onto parent
+    squash = !git rebase -i "$(git town config get-parent)"
+    ; Submit or create a PR
+    s = !git town hack && gh pr create -B $(git town config get-aprent) -f
+    go = town switch
+    sync = town sync --no-push --detached
+    restack = !git rebase -i `git town config get-parent` --update-refs
+    ; create branch
+    cb = town append --detached
 [init]
     defaultBranch = main
 [pull]
@@ -71,7 +77,7 @@
 	sync-prototype-strategy = rebase
 	sync-upstream = true
 	sync-tags = true
-[includeIf "gitdir:~/work-git/"]
-    path = ~/work-git/.gitconfig
 [include]
     path = ~/.local/.gitconfig
+[includeIf "gitdir:~/work-git/"]
+    path = ~/work-git/.gitconfig
