@@ -1,0 +1,54 @@
+set surround
+set easymotion
+set commentary
+set ideajoin
+"
+" Use space a the main leader, ideavim doesn't seem to work with <space>
+let mapleader=" "
+let maplocalleader="\<enter>"
+
+set relativenumber
+set number
+
+" Nicer searching
+set ignorecase
+set incsearch
+set smartcase
+
+set scrolloff 3
+
+" Mappings
+inoremap jk <esc>
+
+nmap <leader>h <c-w>h
+nmap <leader>j <c-w>j
+nmap <leader>k <c-w>k
+nmap <leader>l <c-w>l
+
+" Make it easier to work with other ides
+nnoremap <c-p> :action GotoFile <cr>
+nnoremap <D-p> :action GotoFile <cr>
+
+" Mimic commentary
+nnoremap gcc :action CommentByLineComment <cr>
+vnoremap gc :action CommentByLineComment <cr>
+
+" Close all other tabs
+nnoremap X :action CloseAllEditorsButActive <cr>
+
+nnoremap ]c :action Diff.NextChange <cr>
+nnoremap [c :action Diff.PrevChange <cr>
+
+" Find more examples here: https://jb.gg/share-ideavimrc
+nnoremap <leader>gb :action Annotate <cr>
+
+nnoremap ]s :action GotoNextError<cr>
+nnoremap [s :action GotoPreviousError<cr>
+
+nnoremap s diw"0P
+" This stomps over a register, x
+nnoremap S "xyiw:%s/\<<C-r>x\>/<C-r>0/g<cr>
+vnoremap s "0P
+vnoremap S "xy:%s/\<<C-r>x\>/<C-r>0/g<cr>
+
+nnoremap <leader>sv :source ~/.ideavimrc <cr>
