@@ -1,0 +1,77 @@
+[user]
+    name = Nick
+    email = speedyleion@users.noreply.github.com
+[core]
+    editor = nvim
+    pager = less -FRX
+[alias]
+    wip = !git commit -am \"$(curl -s https://whatthecommit.com/index.txt)\" -e
+    st = status
+    lg = log --oneline --graph
+    lga = log --oneline --graph --all
+    diffb = !git difftool $(git merge-base origin/main HEAD)
+    cane = commit --amend --no-edit
+    sup = submodule update --init --recursive
+    ; Git town stuff
+    ls = town branch
+	append = town append
+	compress = town compress
+	contribute = town contribute
+	diff-parent = town diff-parent
+	down = town down
+	hack = town hack
+	delete = town delete
+	observe = town observe
+	park = town park
+	prepend = town prepend
+	propose = town propose
+	rename = town rename
+	repo = town repo
+	set-parent = town set-parent
+	ship = town ship
+	sync = town sync
+	up = town up
+[init]
+    defaultBranch = main
+[pull]
+    ff = only
+[push]
+    default = upstream
+[diff]
+    tool = bc
+[merge]
+    tool = bc
+[difftool]
+    prompt = false
+[difftool.difftastic]
+    cmd = /opt/homebrew/bin/difft --color=always "$LOCAL" $REMOTE
+[difftool.nvim]
+    cmd = nvim -d $LOCAL $REMOTE
+[mergetool]
+    prompt = false
+    keepBackup = false
+[commit]
+    gpgSign = true
+[git-town]
+	auto-sync = false
+	detached = false
+	new-branch-type = prototype
+	github-connector = gh
+	main-branch = main
+	unknown-branch-type = observed
+	order = asc
+	push-branches = false
+	push-hook = true
+	share-new-branches = no
+	ship-strategy = squash-merge
+	ship-delete-tracking-branch = false
+	stash = false
+	sync-feature-strategy = rebase
+	sync-perennial-strategy = ff-only
+	sync-prototype-strategy = rebase
+	sync-upstream = true
+	sync-tags = true
+[includeIf "gitdir:~/work-git/"]
+    path = ~/work-git/.gitconfig
+[include]
+    path = ~/.local/.gitconfig
