@@ -1,3 +1,5 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.tabstop = 4
@@ -49,6 +51,7 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 vim.cmd.colorscheme "catppuccin-mocha"
+vim.opt.guifont = "MesloLGS Nerd Font Mono:h13"
 
 
 require('neotest').setup {
