@@ -1,0 +1,19 @@
+# Mimix screen prefix
+set-option -g prefix C-a
+# Allow passing C-a to other programs by doing C-a,C-a
+bind-key C-a send-prefix
+
+# Free default prefix
+unbind-key C-b
+
+# Enable vi like operations
+set-option -g mode-keys vi
+bind-key Escape copy-mode-vi
+bind-key -T copy-mode-vi v send -X begin-selection
+
+# If I'm understanding https://unix.stackexchange.com/a/608179 correctly this is
+# the time between ansi escape codes and it's next character. 
+set-option -s -g escape-time 1
+
+# No mice
+set-option -g mouse off
