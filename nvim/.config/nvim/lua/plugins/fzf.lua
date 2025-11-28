@@ -5,6 +5,6 @@ elseif vim.fn.executable('fd') == 1 then
 end
 
 return {
-    { "junegunn/fzf", dir = "~/.fzf", run = "install --bin" },
-    { "junegunn/fzf.vim" },
+    { "junegunn/fzf", config = function() vim.fn["fzf#install"]() end },
+    { "junegunn/fzf.vim"}
 }
