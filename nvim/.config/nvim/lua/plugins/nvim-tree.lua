@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<leader>nf', ':NvimTreeToggle<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>nf', ':NvimTreeFindFileToggle<CR>', { noremap = true })
 return {
     "nvim-tree/nvim-tree.lua",
     version = "*",

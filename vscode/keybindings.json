@@ -18,5 +18,10 @@
     {
         "key": "shift+f10",
         "command": "workbench.action.tasks.reRunTask"
+    },
+    {
+        "key": "a",
+        "command": "explorer.newFile",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceReadonly && !inputFocus"
     }
 ]

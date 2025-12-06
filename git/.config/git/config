@@ -31,7 +31,7 @@
     ; Squash onto parent
     squash = !git rebase -i "$(git town config get-parent)"
     ; Submit or create a PR
-    s = !git town hack && gh pr create -B $(git town config get-aprent) -f
+    s = !git town feature && gh pr create -B $(git town config get-parent) -f
     go = town switch
     sync = town sync --no-push --detached
     restack = !git rebase -i `git town config get-parent` --update-refs

@@ -41,6 +41,9 @@ vim.lsp.inlay_hint.enable(true)
 
 require("config.lazy")
 
+vim.lsp.enable('ty')
+vim.lsp.enable('protols')
+
 vim.api.nvim_create_augroup('squash', { clear = true })
 
 vim.api.nvim_create_autocmd('FileType', {
