@@ -43,6 +43,7 @@ require("config.lazy")
 
 vim.lsp.enable('ty')
 vim.lsp.enable('protols')
+vim.lsp.enable('arduino_language_server')
 
 vim.api.nvim_create_augroup('squash', { clear = true })
 
