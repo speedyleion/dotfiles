@@ -17,6 +17,8 @@ vim.opt.scrolloff = 3
 vim.opt.linebreak = true
 vim.opt.autowrite = true
 vim.opt.textwidth = 80
+vim.opt.completeopt = { "longest", "menu" }
+vim.opt.wildmode = "longest:full,full"
 
 vim.g.mapleader = " "
 vim.g.maplocalleader="\r"
