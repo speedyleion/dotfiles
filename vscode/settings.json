@@ -65,6 +65,28 @@
         ":nohl"
       ]
     },
+    {
+      "before": [
+        "]",
+        "s"
+      ],
+      "commands": [
+        "editor.action.marker.next",
+        "closeMarkersNavigation"
+      ],
+      "silent": true
+    },
+    {
+      "before": [
+        "[",
+        "s"
+      ],
+      "commands": [
+        "editor.action.marker.prev",
+        "closeMarkersNavigation"
+      ],
+      "silent": true
+    }
   ],
   "gitlens.codeLens.scopes": [],
 }
