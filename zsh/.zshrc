@@ -10,15 +10,9 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit light jeffreytse/zsh-vi-mode
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
-zinit ice as"command" from"gh-r" \
-          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-          atpull"%atclone" src"init.zsh"
-zinit light starship/starship
+zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+zinit light sindresorhus/pure
 
 (( $+commands[thefuck] )) && eval $(thefuck --alias)
 
 [[ -f "$HOME/.local/.zshrc" ]] && . "$HOME/.local/.zshrc"
-
-zicompinit
-
-setopt menu_complete
