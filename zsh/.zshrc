@@ -16,3 +16,8 @@ zinit light sindresorhus/pure
 (( $+commands[thefuck] )) && eval $(thefuck --alias)
 
 [[ -f "$HOME/.local/.zshrc" ]] && . "$HOME/.local/.zshrc"
+
+# Enables `ls --color`
+export CLICOLOR=1
+
+zicompinit
