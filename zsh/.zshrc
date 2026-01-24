@@ -37,6 +37,8 @@ zstyle ':fzf-tab:*' prefix ''
 # Use brackets to move between groups
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
+zinit light zsh-users/zsh-autosuggestions   
+
 # Be able to see dot files, `.foo`, when completing
 _comp_options+=(globdots)
 
