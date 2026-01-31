@@ -19,6 +19,8 @@ vim.opt.autowrite = true
 vim.opt.textwidth = 80
 vim.opt.completeopt = { "longest", "menu" }
 vim.opt.wildmode = "longest:full,full"
+vim.opt.spell = true
+vim.opt.spelllang = 'en_us'
 
 vim.g.mapleader = " "
 vim.g.maplocalleader="\r"
