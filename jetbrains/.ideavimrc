@@ -1,5 +1,4 @@
 set surround
-set easymotion
 set commentary
 set ideajoin
 "
@@ -15,7 +14,7 @@ set ignorecase
 set incsearch
 set smartcase
 
-set scrolloff 3
+set scrolloff=3
 
 " Mappings
 inoremap jk <esc>

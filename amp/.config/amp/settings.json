@@ -1,0 +1,9 @@
+{
+  "amp.permissions": [
+    {
+      "tool": "Bash",
+      "matches": { "cmd": "rg *" },
+      "action": "allow"
+    }
+  ]
+}   
