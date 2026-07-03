@@ -26,6 +26,18 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 zinit ice from"gh-r" as"program" ver"v0.73.1"
 zinit light junegunn/fzf
 
+# ripgrep binary from GitHub releases (extract'!' flattens the nested dir)
+zinit ice from"gh-r" as"program" ver"15.1.0" extract"!" pick"rg"
+zinit light BurntSushi/ripgrep
+
+# fd binary from GitHub releases (extract'!' flattens the nested dir).
+# fd ships both gnu and musl for Linux; prefer the static musl build.
+_musl_ice=()
+[[ $OSTYPE == linux* ]] && _musl_ice=(bpick"*musl*")
+zinit ice from"gh-r" as"program" ver"v10.4.2" $_musl_ice extract"!" pick"fd"
+zinit light sharkdp/fd
+unset _musl_ice
+
 zinit light Aloxaf/fzf-tab
 # Works fine in normal terminal, no popup
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
