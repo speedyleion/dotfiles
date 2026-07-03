@@ -16,3 +16,9 @@ For example this would stow the git configuration files into the home directory.
 ```bash
 $ stow -t ~ git
 ```
+
+## obsidian
+
+The `obsidian/` directory is not a stow package (Obsidian templates live inside a
+vault at a machine-specific path). See [obsidian/README.md](obsidian/README.md)
+for the task workflow and how to install the daily note template.
