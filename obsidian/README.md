@@ -38,3 +38,37 @@ Point the daily note at the template:
 Note the caveat about excluding the template folder: 
 It only downranks the file in the Quick Switcher (Cmd+O). It does not hide it
 from searches.
+
+## Hotkeys
+
+The core `Cmd+L` (Toggle checkbox status) only flips `[ ]`↔`[x]` as plain
+markdown — it does not stamp the `✅`/`❌` date, so those tasks never show up in
+"Completed today". Bind the Tasks-plugin commands instead:
+
+- Settings -> Hotkeys -> `Tasks: Toggle task done` -> assign `Cmd+L` (remove the
+  conflicting core "Toggle checkbox status" binding).
+- Settings -> Hotkeys -> `Tasks: Change status to: [-] Cancelled` -> assign
+  `Cmd+Shift+L` (stamps `❌`).
+
+Requires the done/cancelled date settings, and works in Source mode / Live
+Preview only (not Reading mode).
+
+## Checkbox styling
+
+By default Obsidian renders any non-blank checkbox (`[x]`, `[-]`, `[/]`, …) as a
+plain checkmark, so cancelled and in-progress tasks look identical to done ones.
+Fix it with SlRvb's Alternate Checkboxes snippet (works with any theme):
+
+```bash
+curl -L \
+  "https://raw.githubusercontent.com/SlRvb/Obsidian--ITS-Theme/main/Snippets/S%20-%20Checkboxes.css" \
+  -o "/path/to/MyVault/.obsidian/snippets/alternate-checkboxes.css"
+```
+
+- Settings -> Appearance -> CSS snippets -> refresh -> toggle on
+  `alternate-checkboxes`.
+
+Now `[-]` renders dropped/struck-through and `[/]` half-done. To also make the
+extra statuses cycle correctly in Tasks (not just render), import them under
+Settings -> Tasks -> Task Statuses. See
+<https://publish.obsidian.md/tasks/Reference/Status+Collections/SlRvb's+Alternate+Checkboxes>.
