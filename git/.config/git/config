@@ -24,19 +24,19 @@
     ; Diff against the upstream (origin)
     diffo = !git difftool origin/`git branch --show-current`
 
-    ; Git town stuff
-    ls = town branch
+    ; Git spice stuff
+    ls = spice log short --all
     ; Diff to parent
-    diffp = !git difftool `git merge-base $(git town config get-parent) HEAD`
+    diffp = !git difftool `git spice down -n`
     ; Squash onto parent
-    squash = !git rebase -i "$(git town config get-parent)"
+    squash = spice branch edit
     ; Submit or create a PR
-    s = !git town feature && gh pr create -B $(git town config get-parent) -f
-    go = town switch
-    sync = town sync --no-push --detached
-    restack = !git rebase -i `git town config get-parent` --update-refs
+    s = spice branch submit
+    go = spice branch checkout -u
+    sync = spice repo sync
+    restack = spice branch restack
     ; create branch
-    cb = town append --detached
+    cb = spice branch create
 [init]
     defaultBranch = main
 [pull]
@@ -58,25 +58,15 @@
     keepBackup = false
 [commit]
     gpgSign = true
-[git-town]
-	auto-sync = false
-	detached = false
-	new-branch-type = prototype
-	github-connector = gh
-	main-branch = main
-	unknown-branch-type = observed
-	order = asc
-	push-branches = false
-	push-hook = true
-	share-new-branches = no
-	ship-strategy = squash-merge
-	ship-delete-tracking-branch = false
-	stash = false
-	sync-feature-strategy = rebase
-	sync-perennial-strategy = ff-only
-	sync-prototype-strategy = rebase
-	sync-upstream = true
-	sync-tags = true
+[spice "branchCreate"]
+    commit = false
+    prefix = nick/
+[spice "branchEdit"]
+    restack = false
+[spice "branchSquash"]
+    restack = false
+[spice "submit"]
+    navigationComment = false
 [include]
     path = ~/.local/.gitconfig
 [includeIf "gitdir:~/work-git/"]
