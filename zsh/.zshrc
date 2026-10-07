@@ -26,17 +26,23 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 zinit ice from"gh-r" as"program" ver"v0.73.1"
 zinit light junegunn/fzf
 
-# ripgrep binary from GitHub releases (extract'!' flattens the nested dir)
-zinit ice from"gh-r" as"program" ver"15.1.0" extract"!" pick"rg"
-zinit light BurntSushi/ripgrep
-
-# fd binary from GitHub releases (extract'!' flattens the nested dir).
-# fd ships both gnu and musl for Linux; prefer the static musl build.
-_musl_ice=()
-[[ $OSTYPE == linux* ]] && _musl_ice=(bpick"*musl*")
-zinit ice from"gh-r" as"program" ver"v10.4.2" $_musl_ice extract"!" pick"fd"
-zinit light sharkdp/fd
-unset _musl_ice
+# Binaries from GitHub releases (extract'!' flattens the nested dir).
+# Usage: _gh_bin <repo> <version> <binary> [linux-bpick] [mac-bpick]
+_gh_bin() {
+    local bpick
+    case $OSTYPE in
+        linux*)  bpick=$4 ;;
+        darwin*) bpick=$5 ;;
+    esac
+    zinit ice from"gh-r" as"program" ver"$2" ${bpick:+bpick"$bpick"} extract"!" pick"$3"
+    zinit light $1
+}
+_gh_bin BurntSushi/ripgrep 15.2.0  rg
+# fd and lsd ship both gnu and musl for Linux; prefer the static musl build.
+_gh_bin sharkdp/fd         v10.5.0 fd    '*musl*'
+_gh_bin lsd-rs/lsd         v1.2.0  lsd   '*musl*'
+_gh_bin gitui-org/gitui    v0.28.1 gitui ''       'gitui-mac.tar.gz'
+unfunction _gh_bin
 
 zinit light Aloxaf/fzf-tab
 # Works fine in normal terminal, no popup

@@ -31,7 +31,7 @@
     ; Squash onto parent
     squash = spice branch edit
     ; Submit or create a PR
-    s = spice branch submit
+    s = spice branch submit --fill
     go = spice branch checkout -u
     sync = spice repo sync
     restack = spice branch restack
