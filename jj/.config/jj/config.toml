@@ -6,11 +6,12 @@ email = "speedyleion@users.noreply.github.com"
 
 [ui]
 editor = ["nvim", "+$line"]
-diff-editor = "beyondcompare"
-merge-editor = "beyondcompare"
+diff-editor = "bc"
+merge-editor = "bc"
 
-[merge-tools.beyondcompare]
+[merge-tools.bc]
 program  = "bcomp"  
 merge-args = ["$left", "$right", "$base", "$output"]
 merge-tool-edits-conflict-markers = true
 diff-invocation-mode = "file-by-file"
+diff-expected-exit-codes = [0, 1, 2, 11, 12, 13, 14]
