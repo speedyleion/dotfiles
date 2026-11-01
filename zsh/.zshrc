@@ -22,10 +22,6 @@ export CLICOLOR=1
 # For *nix and fzf-tab
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'   
 
-# fzf binary from GitHub releases, placed on PATH for the shell (and nvim)
-zinit ice from"gh-r" as"program" ver"v0.73.1"
-zinit light junegunn/fzf
-
 # Binaries from GitHub releases (extract'!' flattens the nested dir).
 # Usage: _gh_bin <repo> <version> <binary> [linux-bpick] [mac-bpick]
 _gh_bin() {
@@ -37,11 +33,14 @@ _gh_bin() {
     zinit ice from"gh-r" as"program" ver"$2" ${bpick:+bpick"$bpick"} extract"!" pick"$3"
     zinit light $1
 }
+
+_gh_bin junegunn/fzf       v0.73.1 fzf
 _gh_bin BurntSushi/ripgrep 15.2.0  rg
 # fd and lsd ship both gnu and musl for Linux; prefer the static musl build.
 _gh_bin sharkdp/fd         v10.5.0 fd    '*musl*'
 _gh_bin lsd-rs/lsd         v1.2.0  lsd   '*musl*'
 _gh_bin gitui-org/gitui    v0.28.1 gitui ''       'gitui-mac.tar.gz'
+_gh_bin jj-vcs/jj         v0.46.0 jj
 unfunction _gh_bin
 
 zinit light Aloxaf/fzf-tab
