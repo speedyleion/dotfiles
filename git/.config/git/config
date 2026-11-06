@@ -53,6 +53,8 @@
     cmd = /opt/homebrew/bin/difft --color=always "$LOCAL" $REMOTE
 [difftool.nvim]
     cmd = nvim -d $LOCAL $REMOTE
+[difftool.diph]
+    cmd = diph "$LOCAL" "$REMOTE"
 [mergetool]
     prompt = false
     keepBackup = false

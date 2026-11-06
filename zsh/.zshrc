@@ -40,7 +40,8 @@ _gh_bin BurntSushi/ripgrep 15.2.0  rg
 _gh_bin sharkdp/fd         v10.5.0 fd    '*musl*'
 _gh_bin lsd-rs/lsd         v1.2.0  lsd   '*musl*'
 _gh_bin gitui-org/gitui    v0.28.1 gitui ''       'gitui-mac.tar.gz'
-_gh_bin jj-vcs/jj         v0.46.0 jj
+_gh_bin jj-vcs/jj          v0.46.0 jj
+_gh_bin speedyleion/diph   v0.1.1  diph
 unfunction _gh_bin
 
 zinit light Aloxaf/fzf-tab
