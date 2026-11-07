@@ -49,8 +49,16 @@
     tool = bc
 [difftool]
     prompt = false
+[difftool.bc]
+    expectedExitCode = 0
+    expectedExitCode = 1
+    expectedExitCode = 2
+    expectedExitCode = 11
+    expectedExitCode = 12
+    expectedExitCode = 13
+    expectedExitCode = 14
 [difftool.difftastic]
-    cmd = /opt/homebrew/bin/difft --color=always "$LOCAL" $REMOTE
+    cmd = difft --color=always "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
 [difftool.nvim]
     cmd = nvim -d $LOCAL $REMOTE
 [difftool.diph]
