@@ -50,6 +50,7 @@
 [difftool]
     prompt = false
 [difftool.bc]
+    cmd = bcomp-retry "$LOCAL" "$REMOTE"
     expectedExitCode = 0
     expectedExitCode = 1
     expectedExitCode = 2

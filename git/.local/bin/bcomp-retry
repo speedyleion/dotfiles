@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+empty_files=()
+args=()
+
+cleanup() {
+    ((${#empty_files[@]} == 0)) || rm -f -- "${empty_files[@]}"
+}
+trap cleanup EXIT
+
+for arg in "$@"; do
+    # beyond compare will return exit code 100 when one of the files is
+    # /dev/null. Beyond compare will still open the diff with the new file. We
+    # replace with an empty file to avoid the failure result code.
+    if [[ $arg == /dev/null ]]; then
+        # Beyond compare uses `1` as a successful binary same result, so we
+        # feed back 100 if we failed to create the temp file
+        empty_file=$(mktemp "${TMPDIR:-/tmp}/bcomp-empty.XXXXXX") || exit 100
+        empty_files+=("$empty_file")
+        args+=("$empty_file")
+    else
+        args+=("$arg")
+    fi
+done
+
+bcomp "${args[@]}"
+status=$?
+
+if [[ $status == 111 ]]; then
+    # At times Beyond compare will throw 111 and fail to open the diff, after
+    # comparing two files that are binary the same. Waiting 10 ms seems to let
+    # it fix itself.
+    sleep 0.01
+    bcomp "${args[@]}"
+    status=$?
+fi
+
+exit "$status"
