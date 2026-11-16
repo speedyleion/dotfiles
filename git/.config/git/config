@@ -63,7 +63,7 @@
 [difftool.nvim]
     cmd = nvim -d $LOCAL $REMOTE
 [difftool.diph]
-    cmd = diph "$LOCAL" "$REMOTE"
+    cmd = diph "$LOCAL" "$REMOTE" --label "$MERGED" --label "$MERGED" --review ".diph-review.json"
 [mergetool]
     prompt = false
     keepBackup = false
