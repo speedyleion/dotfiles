@@ -44,7 +44,7 @@
 [push]
     default = upstream
 [diff]
-    tool = bc
+    tool = diph
 [merge]
     tool = bc
 [difftool]
